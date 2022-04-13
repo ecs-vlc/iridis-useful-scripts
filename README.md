@@ -1,7 +1,7 @@
 # Iridis Useful Scripts
 
 This repository is designed to help people using the Iridis Supercomputer at the University of Southampton.
-Feel free to share what scripts you are using and might be useful for other people!
+Feel free to share what scripts you are using and what might be useful for other people!
 
 ## Contents
 * [Useful external resources](#useful-external-resources)
