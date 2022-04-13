@@ -6,6 +6,7 @@ Feel free to share what scripts you are using and what might be useful for other
 ## Contents
 * [Useful external resources](#useful-external-resources)
 * [GPU availability status](#gpu-availability-status)
+* [Monitoring slrum job output](#monitoring-slrum-job-output)
 
 ## Useful external resources
 [Princeton University supercomputer](https://researchcomputing.princeton.edu/support/knowledge-base/pytorch) \
