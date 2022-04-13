@@ -49,7 +49,7 @@ status
 
 
 ## Monitoring slrum job output
-If you want to monitor the output of you job in real time, you can run the 'tail' command every 1 second and keep displaying
+If you want to monitor the output of your job in real time, you can run the 'tail' command every 1 second and keep displaying
 the most recent 50 lines. This can be useful for faster debugging.
 
 ```bash
