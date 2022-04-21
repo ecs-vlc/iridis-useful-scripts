@@ -42,10 +42,17 @@ Now in your terminal you can run:
 ```bash
 status
 #example output:
-# >STATUS v100 GPUS: 4/10 nodes are in use
-# >STATUS 1080TI GPUS: 3/10 nodes are in use
-# >STATUS rtx8000 GPUS: 2/12 staff GPUS are in use
-# >STATUS rtx8000 GPUS: 1/8 student GPUS are in use
+----------------------------------------------------------
+|PARTITION|      |NODES|         |USED|         |RESOURCES|
+----------------------------------------------------------
+gtx1080           pink[51-60]       7           10 nodes
+gpu              indigo[51-60]      7           10 nodes
+ecsstaff         alpha[51-53]       4           12 GPUS
+ecsstudent       alpha[54-56]       1           12 GPUS
+
+Note: for 'ecs' partitions we approximate the number of GPUS used
+e.g. a job could be using multiple gpus
+
 ```
 
 
