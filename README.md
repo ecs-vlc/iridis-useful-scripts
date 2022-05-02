@@ -62,7 +62,7 @@ ecsstudent        9                  12
 ecsstaff          5                  12
 Note: gtx1080 and v100 are GPUS locked to users on the node
       rtx8000 are not locked to node users
-
+```
 
 ## Monitoring slrum job output
 If you want to monitor the output of your job in real time, you can run the 'tail' command every 1 second and keep displaying
