@@ -15,7 +15,7 @@ echo ""
 
 ecsstudent_used=0
 re='^[0-9]+$'
-for node in 'alpha51', 'alpha52', 'alpha53';
+for node in 'alpha54', 'alpha55', 'alpha56';
   do
     used=$(scontrol show node\=$node | grep 'AllocTRES' | tail -c 2 | sed 's/[^0-9]//g')
     if [[ $used  ]] ; then
@@ -23,7 +23,7 @@ for node in 'alpha51', 'alpha52', 'alpha53';
     fi
   done
 ecsstaff_used=0
-for node in 'alpha54', 'alpha55', 'alpha56';
+for node in 'alpha51', 'alpha52', 'alpha53';
   do
     used=$(scontrol show node\=$node | grep 'AllocTRES' | tail -c 2 | sed 's/[^0-9]//g')
     if [[ $used  ]] ; then
