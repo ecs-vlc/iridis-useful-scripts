@@ -42,18 +42,26 @@ Now in your terminal you can run:
 ```bash
 status
 #example output:
-----------------------------------------------------------
-|PARTITION|      |NODES|         |USED|         |RESOURCES|
-----------------------------------------------------------
-gtx1080           pink[51-60]       7           10 nodes
-gpu              indigo[51-60]      7           10 nodes
-ecsstaff         alpha[51-53]       4           12 GPUS
-ecsstudent       alpha[54-56]       1           12 GPUS
 
-Note: for 'ecs' partitions we approximate the number of GPUS used
-e.g. a job could be using multiple gpus
+-------------------------NODE STATUS-----------------------
 
-```
+PARTITION             AVAIL  TIMELIMIT   NODES(A/I/O/T) NODELIST
+gpu                      up 2-12:00:00         1/7/2/10 indigo[51-60]
+gtx1080                  up 2-12:00:00         4/4/2/10 pink[51-60]
+ecsstaff                 up 5-00:00:00          3/0/0/3 alpha[51-53]
+ecsstudents              up   12:00:00          2/1/0/3 alpha[54-56]
+Note: allocated/idle/other/total
+
+
+--------------------------GPU STATUS-----------------------
+
+------------------------------------------
+|PARTITION|       |USED|         |NR GPUS|
+------------------------------------------
+ecsstudent        9                  12
+ecsstaff          5                  12
+Note: gtx1080 and v100 are GPUS locked to users on the node
+      rtx8000 are not locked to node users
 
 
 ## Monitoring slrum job output
