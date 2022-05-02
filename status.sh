@@ -1,41 +1,44 @@
 #!/bin/bash
-
-v100=$(squeue |  awk ' $2 ~ /\gpu/' |  awk ' $8 !~ /\(/' | awk  '!_[$8]++' | awk '{print $7}' | awk '{s+=$1} END {print s}')
-gtx=$(squeue |  awk ' $2 ~ /\gtx1080/' |  awk ' $8 !~ /\(/' | awk  '!_[$8]++' | awk '{print $7}' | awk '{s+=$1} END {print s}')
-
-#PartitionName=ecsstaff Nodes=alpha[51-53]
-ecsstaff=$(squeue |  awk ' $2 ~ /\ecsstaff/' |  awk ' $8 !~ /\(/' | awk '{print $7 " " $8}' |  awk ' $2 ~ /1|2|3/' | awk '{s+=$1} END {print s}')
-
-# PartitionName=ecsstudents Nodes=alpha[54-56]
-ecsstudent=$(squeue |  awk ' $2 ~ /\ecsstuden/' |  awk ' $8 !~ /\(/' | awk '{print $7 " " $8}'|  awk ' $2 ~ /4|5|6/'  | awk '{s+=$1} END {print s}')
+echo ""
+echo "-------------------------NODE STATUS-----------------------"
+echo ""
+sinfo -s | head -n 1
+sinfo -s | grep 'gtx1080\|gpu\|ecsstaff\|ecsstudents'
+echo "Note: allocated/idle/other/total"
 
 
 echo ""
-echo "----------------------------------------------------------"
-echo "|PARTITION|      |NODES|         |USED|         |RESOURCES|"
-echo "----------------------------------------------------------"
+echo ""
+echo "--------------------------GPU STATUS-----------------------"
+echo ""
 
-echo "gtx1080           pink[51-60]       "$gtx"           10 nodes"
-echo "gpu              indigo[51-60]      "$v100"           10 nodes"
-echo "ecsstaff         alpha[51-53]       "$ecsstaff"           12 GPUS"
-echo "ecsstudent       alpha[54-56]       "$ecsstudent"           12 GPUS"
 
+ecsstudent_used=0
+re='^[0-9]+$'
+for node in 'alpha51', 'alpha52', 'alpha53';
+  do
+    used=$(scontrol show node\=$node | grep 'AllocTRES' | tail -c 2 | sed 's/[^0-9]//g')
+    if [[ $used  ]] ; then
+       ecsstudent_used=$(($ecsstudent_used + $used))
+    fi
+  done
+ecsstaff_used=0
+for node in 'alpha54', 'alpha55', 'alpha56';
+  do
+    used=$(scontrol show node\=$node | grep 'AllocTRES' | tail -c 2 | sed 's/[^0-9]//g')
+    if [[ $used  ]] ; then
+       ecsstaff_used=$(($ecsstaff_used + $used))
+    fi
+  done
+
+
+echo "------------------------------------------"
+echo "|PARTITION|       |USED|         |NR GPUS|"
+echo "------------------------------------------"
+echo "ecsstudent        "$ecsstudent_used"                  12"
+echo "ecsstaff          "$ecsstaff_used"                  12"
+
+echo "Note: gtx1080 and v100 are GPUS locked to users on the node"
+echo "      rtx8000 are not locked to node users"
 echo ""
-echo "Note: for 'ecs' partitions we approximate the number of GPUS used"
-echo "e.g. a job could be using multiple gpus"
-echo ""
-echo ""
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
-~
+
