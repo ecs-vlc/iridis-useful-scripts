@@ -14,6 +14,9 @@ Note: even if the partitions are named different, most of the examples can be ea
 There are a lot of examples with links to Pytorch implementations (e.g. Distributed training) \
 [Iridis 5 University of Southampton](https://hpc.soton.ac.uk/redmine/projects/iridis-5-support/wiki)
 
+##Overview of Iridis5 GPU partitions
+<img src="https://github.com/ecs-vlc/iridis-useful-scripts/gpu-nodes.pdf" width="75%" height="75%">
+
 ## GPU availability status
 Check the availability of the GPU nodes (gtx1080, gpu, ecsstaff, ecsstudent).
 - Nodes containing *Nvidia 1080ti* and *Tesla v100* GPUs are locked when a user is granted access. This means that even if the 
